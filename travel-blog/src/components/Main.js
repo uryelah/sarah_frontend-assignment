@@ -1,9 +1,11 @@
-const Main = () => {
+const Main = ({ portrait, hero }) => {
   return (
     <main>
-      <header></header>
+      <header>
+        <img src={hero} alt="Blog Header hero"/>
+      </header>
       <section>
-        <img/>
+        <img src={portrait} alt="Blog author"/>
         <article>
           <h1>
             A little about me
