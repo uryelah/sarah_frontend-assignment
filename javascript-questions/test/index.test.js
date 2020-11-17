@@ -2,15 +2,15 @@ const assert = require('assert');
 const data = require('../super-heroes.json');
 const {
   convertCharactersToArray,
-  getDCHeroes,
+  getMarvelHeroes,
   getDCHeroesWithMoreThanOneCharacter,
   groupByPublisher,
 } = require('../index');
 
 describe('Javascript questions tests', function() {
-  describe('getDCHeroes()', function() {
+  describe('getMarvelHeroes()', function() {
     it('Should return the correct number of marvel characters', function() {
-      assert.equal(getDCHeroes(data).length, 10);
+      assert.equal(getMarvelHeroes(data).length, 10);
     });
   });
 

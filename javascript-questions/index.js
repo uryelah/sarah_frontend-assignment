@@ -9,7 +9,7 @@ const superHeroes = require('./super-heroes.json');
  *  }
  * ]
  */
-const getDCHeroes = (heroes) => {
+const getMarvelHeroes = (heroes) => {
   return heroes;
 }
 
@@ -66,7 +66,7 @@ const getDCHeroesWithMoreThanOneCharacter = (heroes) => {
 
 module.exports = {
   convertCharactersToArray,
-  getDCHeroes,
+  getMarvelHeroes,
   getDCHeroesWithMoreThanOneCharacter,
   groupByPublisher,
 }
