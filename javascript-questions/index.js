@@ -12,7 +12,7 @@ const superHeroes = require('./super-heroes.json');
  * ]
  */
 const filterHeroes = (heroes, key, val) => {
-  return heroes.filter(hero => hero[key] === val);
+  return heroes.filter(hero => new RegExp(val).test(hero[key]));
 };
 
 /**
@@ -83,8 +83,10 @@ const groupByPublisher = (heroes) => {
  * ]
  */
 const getDCHeroesWithMoreThanOneCharacter = (heroes) => {
-  return filterHeroes(heroes, 'publisher', 'DC Comics');
+  return filterHeroes(filterHeroes(heroes, 'publisher', 'DC Comics'), 'characters', ',');
 }
+
+console.log(getDCHeroesWithMoreThanOneCharacter(superHeroes));
 
 module.exports = {
   convertCharactersToArray,
