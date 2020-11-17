@@ -14,11 +14,11 @@ const getMarvelHeroes = (heroes) => {
 }
 
 /**
- * Converts the character property into an array
+ * Converts the characters property into an array
  * @returns [
  *  {
  *    ...hero,
- *    character: [
+ *    characters: [
  *      string,
  *      string,
  *      string,
@@ -27,8 +27,10 @@ const getMarvelHeroes = (heroes) => {
  * ]
  */
 const convertCharactersToArray = (heroes) => {
-  return heroes;
+  return heroes.map(hero => Object.assign(hero, { characters: hero.characters.split() }))
 }
+
+//console.log(convertCharactersToArray(superHeroes));
 
 /**
  * Coverts super hero data so it is grouped the publisher property
