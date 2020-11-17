@@ -10,7 +10,7 @@ const superHeroes = require('./super-heroes.json');
  * ]
  */
 const getMarvelHeroes = (heroes) => {
-  return heroes;
+  return heroes.filter(hero => hero.publisher === 'Marvel Comics');
 }
 
 /**
