@@ -30,8 +30,6 @@ const convertCharactersToArray = (heroes) => {
   return heroes.map(hero => Object.assign(hero, { characters: hero.characters.split() }))
 }
 
-//console.log(convertCharactersToArray(superHeroes));
-
 /**
  * Coverts super hero data so it is grouped the publisher property
  * @returns {
@@ -46,7 +44,14 @@ const convertCharactersToArray = (heroes) => {
  * }
  */
 const groupByPublisher = (heroes) => {
-  return heroes;
+  const publisherGroups = {};
+
+  heroes.forEach(hero => {
+    publisherGroups[hero.publisher] = publisherGroups[hero.publisher] || [];
+    publisherGroups[hero.publisher].push(hero);
+  });
+
+  return publisherGroups;
 }
 
 /**
