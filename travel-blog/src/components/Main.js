@@ -1,11 +1,15 @@
+import '../App.scss';
+
 const Main = ({ portrait, hero }) => {
   return (
-    <main>
-      <header>
+    <main className="main">
+      <header className="header">
         <img src={hero} alt="Blog Header hero"/>
       </header>
-      <section>
-        <img src={portrait} alt="Blog author"/>
+      <section className="content">
+        <div className="portrait" >
+          <img src={portrait} alt="Blog author"/>
+        </div>
         <article>
           <h1>
             A little about me

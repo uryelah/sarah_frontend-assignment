@@ -24,10 +24,24 @@ ul, li {
 }
 
 .app {
+  height: 50vh;
   * {
     font-family: 'Inter', sans-serif;
     box-sizing: border-box;
   }
+}
+
+[class*=nav], [class*=footer] {
+  width: 100%;
+}
+
+[class*=nav] {
+  position: fixed;
+  top: 0;
+}
+
+[class*=footer] {
+  height: 20px;
 }
 
 [class*=bar] {
@@ -50,4 +64,33 @@ ul, li {
 [class*=--primary-light] {
   background-color: $primary-light;
   color: $gray;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 20px 1fr 1fr 1fr 20px;
+  grid-template-rows: repeat(2, calc(50vh - 10px));
+}
+
+.header {
+  grid-row: 1;
+  grid-column: 2/5;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+}
+
+.content {
+  grid-row: 2;
+  grid-column: 2/5;
+  display: flex;
+}
+
+.portrait {
+  border-radius: 50%;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
 }
