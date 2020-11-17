@@ -1,6 +1,21 @@
 const superHeroes = require('./super-heroes.json');
 
 /**
+ * 
+ * Utility filter for any parameter of the heroes list
+ * @returns [
+ * {
+ *   ...hero
+ *   <parameter>: <filter by value>
+ * },
+ * ...
+ * ]
+ */
+const filterHeroes = (heroes, key, val) => {
+  return heroes.filter(hero => hero[key] === val);
+};
+
+/**
  * Will find all of the marvel characters in the data and return them as an array
  * @returns [
  *  {
@@ -10,7 +25,7 @@ const superHeroes = require('./super-heroes.json');
  * ]
  */
 const getMarvelHeroes = (heroes) => {
-  return heroes.filter(hero => hero.publisher === 'Marvel Comics');
+  return filterHeroes(heroes, 'publisher', 'Marvel Comics');
 }
 
 /**
@@ -59,7 +74,7 @@ const groupByPublisher = (heroes) => {
  * @returns [
  *  {
  *    ...hero,
- *    character: [
+ *    characters: [
  *      string,
  *      string,
  *      string,
@@ -68,7 +83,7 @@ const groupByPublisher = (heroes) => {
  * ]
  */
 const getDCHeroesWithMoreThanOneCharacter = (heroes) => {
-  return heroes;
+  return filterHeroes(heroes, 'publisher', 'DC Comics');
 }
 
 module.exports = {
