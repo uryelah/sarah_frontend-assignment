@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
 $site-width: 1200px;
+$site-width-smal: 80%;
 $hero-width: 1600px;
+$hero-width-small: 800px;
 $profile-image-width: 300px;
 
 $gutter: 8px;
@@ -24,27 +26,75 @@ ul, li {
 }
 
 .app {
-  height: 50vh;
+  height: 100vh;
+  overflow: hidden;
   * {
     font-family: 'Inter', sans-serif;
     box-sizing: border-box;
+    position: relative;
+    white-space: nowrap;
+    z-index: 1;
+  }
+
+  p {
+    white-space: break-spaces;
   }
 }
 
-[class*=nav], [class*=footer] {
+.nav, [class*=nav--], .footer, [class*=footer--] {
+  align-items: center;
+  display: flex;
+  justify-content: center;
   width: 100%;
+  z-index: 10
 }
 
-[class*=nav] {
+.nav, [class*=nav--] {
+  padding: $gutter;
   position: fixed;
   top: 0;
 }
 
-[class*=footer] {
-  height: 20px;
+[class*=__bar--between] {
+  width: $site-width;
+}
+
+[class*=tab-link] {
+  border-radius: 4px;
+  padding: $gutter $gutter * 2;
+  margin: 0 $gutter/2;
+}
+
+.tab-link:hover {
+  background-color: transparentize($color: $primary, $amount: 0.5);
+}
+
+.tab-link--active {
+  background-color: $primary;
+  color: $primary-light;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  font-weight: 400;
+}
+
+.logo__main {
+  font-size: 2rem;
+}
+
+.logo__detail {
+  font-size: 1.1rem;
+  font-style: oblique;
+}
+
+.footer, [class*=footer--] {
+  height: 50px;
 }
 
 [class*=bar] {
+  align-items: center;
   display: flex;
 }
 
@@ -68,29 +118,147 @@ ul, li {
 
 .main {
   display: grid;
-  grid-template-columns: 20px 1fr 1fr 1fr 20px;
-  grid-template-rows: repeat(2, calc(50vh - 10px));
+  grid-template-columns: 3vw 1fr 1fr 1fr 3vw;
+  grid-template-rows: repeat(2, calc(50vh - 25px));
 }
 
-.header {
+.main__header {
   grid-row: 1;
   grid-column: 2/5;
+  justify-self: center;
+  max-width: $hero-width;
   overflow: hidden;
   img {
     width: 100%;
+    min-width: 1530px;
   }
 }
 
-.content {
+.main__content {
+  display: flex;
   grid-row: 2;
   grid-column: 2/5;
-  display: flex;
+  justify-self: center;
+  max-width: $site-width;
 }
 
-.portrait {
+.main__portrait {
+  display: flex;
+  justify-content: flex-end;
+  flex-basis: 30%;
+  flex-shrink: 0;
+  padding: 55px 25px;
+}
+
+.main__headshot {
   border-radius: 50%;
   overflow: hidden;
+  height: $profile-image-width;
+  width: $profile-image-width;
   img {
     width: 100%;
   }
 }
+
+.article {
+  color: $gray;
+  flex-basis: 70%;
+  flex-grow: 0;
+  margin: 20px 0;
+  max-height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.article::-webkit-scrollbar {
+  display: none;
+}
+
+.article__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: $medium-breakpoint) {
+  [class*=__bar--between] {
+    width: $site-width-smal;
+  }
+
+  .main__header {
+    max-width: $hero-width-small;
+  }
+
+  .main__content {
+    max-width: $site-width-smal;
+    flex-direction: column;
+    align-items: center;
+    scrollbar-width: none;
+
+    .article {
+      flex-basis: 80%;
+      width: 100%;
+      margin-top: calc(50px - 10vh);
+      text-align: center;
+      max-width: 100%;
+    }
+
+    .main__portrait {
+      padding: 0;
+      position: fixed;
+      top: 20vh;
+      z-index: 5;
+    }
+  }  
+
+  .main__headshot {
+    height: $profile-image-width/1.2;
+    width: $profile-image-width/1.2;
+  }
+
+  .main__header {
+    height: 36vh;
+  }
+
+  .main__content::-webkit-scrollbar {
+    display: none;
+  }
+} 
+
+@media only screen and (max-width: $small-breakpoint) {
+  [class*=__bar--between] {
+    align-items: center;
+    flex-direction: column; 
+  }
+
+  [class*=__bar--between] > * {
+    margin: $gutter 0;
+  }
+
+  .footer, [class*=footer--] {
+    height: 100px;
+  }
+
+  .main {
+    grid-template-rows: repeat(2, calc(50vh - 50px));
+  }
+
+  .main__header {
+    height: 33vh;
+  }
+
+  .main__headshot {
+    height: $profile-image-width/2;
+    width: $profile-image-width/2;
+  }
+
+  .main__content {
+    .main__portrait {
+      top: 21.5vh;
+    }
+
+    .article {
+      flex-basis: 90%;
+      margin-top: 10px;
+    }
+  }
+} 
